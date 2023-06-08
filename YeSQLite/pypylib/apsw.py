@@ -47,6 +47,7 @@ typedef void (*sqlite3_destructor_type)(void*);
 typedef struct sqlite3_context sqlite3_context;
 typedef struct Mem sqlite3_value;
 const char *sqlite3_errmsg(sqlite3*);
+int sqlite3_enable_load_extension(sqlite3 *db, int onoff);
 int sqlite3_open_v2(const char *filename, sqlite3 **ppDb, int flags, const char *zVfs);
 int sqlite3_close(sqlite3*);
 int sqlite3_busy_timeout(sqlite3 *, int ms);
@@ -365,7 +366,7 @@ SQLITE_FUNCTION                 = 31
 # SQLite C API
 HAS_LOAD_EXTENSION = hasattr(sqlite, "sqlite3_enable_load_extension")
 if HAS_LOAD_EXTENSION:
-    ffi.cdef("""int sqlite3_enable_load_extension(sqlite3 *db, int onoff);""")
+    ffi.cdef("""int sqlite3_enable_load_extension(sqlite3 *db, int onoff);""", override=True)
 
 ##########################################
 # END Wrapped SQLite C API and constants
@@ -1378,7 +1379,7 @@ class Connection(object):
 
     #if HAS_LOAD_EXTENSION:
     def enableloadextension(self, enabled):
-            return
+            # return
             rc = sqlite.sqlite3_enable_load_extension(self._db, int(enabled))
 
             if rc != SQLITE_OK:
