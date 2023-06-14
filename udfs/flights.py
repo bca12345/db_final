@@ -90,6 +90,8 @@ divertedmap.registered = True
 
 def fillintimes(c, d, e):
       if d != "":
+          if d == None:
+              return c
           if float(d) > 0:
               return  float(e)
           else:
