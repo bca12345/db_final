@@ -1,3 +1,15 @@
+# About
+This final project aims to enhance the query performance on [YeSQL](https://github.com/athenarc/YeSQL/tree/main)(*VLDB22*) when dealing with large CSV files. The proposed method efficiently convert CSV files to Parquet format and enable the loading of  extension [sqlite-parquet-vtable](https://github.com/cldellow/sqlite-parquet-vtable/tree/master) to YeSQLite through the SQLITE API. The detailed workflows and results can be found at `report.pdf`
+
+## Main Result
+Use a simple query like: 
+```
+select avg(C15) from file ("census.csv") where C3="Canada"
+```
+The query time is significantly improved and the file conversion is also efficient. 
+
+<img src="result.png" alt="query result" height="300">
+
 # Reference
 
 YeSQL: https://github.com/athenarc/YeSQL/tree/main
